@@ -135,6 +135,8 @@ resource "aws_route_table_association" "main" {
 #   lifecycle {
 #     create_before_destroy = true
 #   }
+
+#   depends_on = [aws_subnet.main]
 # }
 
 # ==============================================================================

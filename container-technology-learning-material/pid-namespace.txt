@@ -1,0 +1,10 @@
+245 -> 1 (process id)
+4->8
+500043 -> 2
+
+
+
+C://
+
+C://var/lib -> /usr/var/lib
+C://tmp -> /home

@@ -15,7 +15,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.0" # Allows minor version upgrades (e.g. 5.x) but not major ones.
+      version = "~> 6.0" # Allows minor version upgrades (e.g. 5.x) but not major ones.
     }
     random = {
       source  = "hashicorp/random"
@@ -32,7 +32,7 @@ provider "aws" {
 
   # Default tags are automatically applied to all AWS resources created by this provider.
   # This is a best practice to enforce consistent tagging.
-  default_tags {
-    tags = local.common_tags
-  }
+  # default_tags {
+  #   tags = local.common_tags
+  # }
 }

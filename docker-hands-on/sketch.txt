@@ -1,0 +1,1 @@
+host/PC(8080) -> vagrant(8080) -> docker(80) -> nginx
