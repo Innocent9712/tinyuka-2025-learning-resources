@@ -116,3 +116,18 @@ Pick **one** of the three apps above (Task Tracker API or Notes App are the more
 6. **Prove it's real.** Remove the local image (`docker rmi`), then `docker pull` it back down fresh from Docker Hub, run it again, and confirm it still works. This step matters — it's the difference between "it works because it's cached on my machine" and "it actually works as a shipped image."
 
 If something breaks between local-run and container-run (very common — port binding, missing env var, a file path that only exists on your machine), that's the most useful part of the exercise: figure out why, fix the Dockerfile or the app, and note what caused it.
+
+## Submitting your work for review
+
+   Use Pull Requests (PRs) to present your changes incrementally. Follow this branching strategy:
+
+   ```
+   feature/name-of-the-feature -> review -> main
+   ```
+
+   - Create a **feature branch** for each piece of work (e.g. `feature/flask-dockerfile`, `feature/go-multistage`).
+   - When a feature is complete, merge it into a **`review`** branch.
+   - Once you're ready for feedback, open a PR from `review` → `main` and request a review.
+   - Reviews will be provided as comments on that PR. You can address feedback on new fix/feature branches, merge them into the open PR, and request another round of review — or merge directly to `main` if you prefer.
+
+   When submitting, provide links to your PRs so the progression of changes is easy to follow.

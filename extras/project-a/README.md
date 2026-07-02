@@ -102,6 +102,21 @@ Add an `outputs.tf` that exposes at minimum:
 
 A github repo with a well-structured, working Terraform project directory (not a single file) that can deploy cleanly to `dev`, `staging`, and `prod` workspaces in the same AWS account, with `terraform plan` showing sensible, environment-appropriate differences between them.
 
-Add a well-structured README.md to the github repo explaining the working and design of the project.
+Add a well-structured README.md to the github repo explaining the working and design of the project. Make sure to make use of PRs (Pull Requests) to show the changes you made in a step by step manner.
 
 Additionally, you can add the terraform statefile showing the deployed infrastructure.
+
+## Submitting your work for review
+
+   Use Pull Requests (PRs) to present your changes incrementally. Follow this branching strategy:
+
+   ```
+   feature/name-of-the-feature -> review -> main
+   ```
+
+   - Create a **feature branch** for each piece of work (e.g. `feature/flask-dockerfile`, `feature/go-multistage`).
+   - When a feature is complete, merge it into a **`review`** branch.
+   - Once you're ready for feedback, open a PR from `review` → `main` and request a review.
+   - Reviews will be provided as comments on that PR. You can address feedback on new fix/feature branches, merge them into the open PR, and request another round of review — or merge directly to `main` if you prefer.
+
+   When submitting, provide links to your PRs so the progression of changes is easy to follow.
