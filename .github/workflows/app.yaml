@@ -1,33 +1,115 @@
+# name: Nodejs app deployment
+
+# on:
+#   push:
+#     branches:
+#         -  test
+#   pull_request:
+#     branches: [ master ]
+
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: checkout
+#       uses: actions/checkout@v4
+#     - name: setup node
+#       uses: actions/setup-node@v4
+#       with:
+#         node-version: '20'
+#     - name: install dependencies
+#       working-directory: ./cicd-hands-on/app
+#       run: npm ci
+#     - name: run tests
+#       working-directory: ./cicd-hands-on/app
+#       run: npm test
+
+#   deploy:
+#     needs: test
+#     if: github.event.pull_request.merged == true
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name:     checkout
+#       uses: actions/checkout@v4
+#     - name: setup node
+#       uses: actions/setup-node@v4
+#       with:
+#         node-version: '20'
+#     - name: install dependencies
+#       working-directory: ./cicd-hands-on/app
+#       run: npm ci
+#     - name: setup server environment
+#       run: echo "server is ready"
+#     - name: deploy to server
+#       working-directory: ./cicd-hands-on/app
+#       run: npm run start
+#     - name: validate that the app runs fine
+#       run: echo "app has started successfully"
+
+
 name: Nodejs app deployment
 
 on:
   push:
     branches:
-        -  test
+      - test
+      - master # Triggers when a PR is merged into master
   pull_request:
-    branches: [ master ]
+    branches:
+      - master # Triggers when a PR is opened/updated against master
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./cicd-hands-on/app # Simplifies repetitive working-directory fields
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-    - run: npm ci
-    - run: npm test
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-#   deploy:
-#     needs: test
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v4
-#     - uses: actions/setup-node@v4
-#       with:
-#         node-version: '20'
-#     - run: npm ci
-#     - run: npm run build
-#     - run: npm run start
-#     - run: npm run test
-    
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm' # Automatically caches node_modules for faster runs
+          cache-dependency-path: ./cicd-hands-on/app/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+  deploy:
+    needs: test
+    # Only run deploy if the event is a push to the master branch (which includes PR merges)
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./cicd-hands-on/app
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: ./cicd-hands-on/app/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Setup server environment
+        run: echo "server is ready"
+
+      - name: Deploy to server
+        # NOTE: If 'npm run start' starts a permanent server, this step will hang.
+        # Consider replacing this with an actual deployment sync command (e.g., rsync, docker push, ssh broadcast)
+        run: npm run start
+
+      - name: Validate that the app runs fine
+        run: echo "app has started successfully"
