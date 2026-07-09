@@ -1,0 +1,33 @@
+name: Nodejs app deployment
+
+on:
+  push:
+    branches:
+        -  test
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    - run: npm ci
+    - run: npm test
+
+#   deploy:
+#     needs: test
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v4
+#     - uses: actions/setup-node@v4
+#       with:
+#         node-version: '20'
+#     - run: npm ci
+#     - run: npm run build
+#     - run: npm run start
+#     - run: npm run test
+    

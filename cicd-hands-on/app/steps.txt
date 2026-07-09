@@ -1,0 +1,59 @@
+setup the workflow environment
+sertup the app dependencies
+run tests for the app
+prepare the server environment
+get the app code to the server
+run the app on the server
+validate that tha app runs fine
+
+
+
+When there's only the prod environment to deploy to
+
+event:on push
+
+actions:
+- setup the workflow environment
+- sertup the app dependencies
+- run tests for the app
+
+event: on pull request
+actions:
+- setup the workflow environment
+- sertup the app dependencies
+- run tests for the app
+
+event: on merge
+actions:
+- prepare the server environment
+- get the app code to the server
+- run the app on the server
+- validate that the app runs fine
+
+
+When there's both the staging and the prod environment to deploy to
+
+
+event:on push
+
+actions:
+- setup the workflow environment
+- sertup the app dependencies
+- run tests for the app
+
+
+event: on merge
+actions:
+- prepare the server environment
+- get the app code to the server
+- run the app on the server
+- validate that tha app runs fine
+
+
+event: on merge
+
+actions:
+- prepare the server environment
+- get the app code to the server
+- run the app on the server
+- validate that tha app runs fine
