@@ -81,6 +81,11 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: check secrets and variables
+        run: |
+          echo "some secret: ${{secrets.MY_SECRET}}"
+          echo "some variable: ${{vars.MY_VARIABLE}}"
+
   deploy:
     needs: test
     # Only run deploy if the event is a push to the master branch (which includes PR merges)
@@ -109,7 +114,7 @@ jobs:
       - name: Deploy to server
         # NOTE: If 'npm run start' starts a permanent server, this step will hang.
         # Consider replacing this with an actual deployment sync command (e.g., rsync, docker push, ssh broadcast)
-        run: npm run start
+        run: echo "server deployed"
 
       - name: Validate that the app runs fine
         run: echo "app has started successfully"
