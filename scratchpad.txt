@@ -1,0 +1,28 @@
+Frontend static websites:
+- React App
+- VueJs App
+- Angular App
+- Svelte App
+- Plain HTML, CSS, JS
+
+What they provide you with:
+- Frontend Repo
+- Config values
+- Build and run command
+- domain to map to
+
+What infra and setup do you create:
+- S3 bucket
+- CloudFront distribution
+- Route53 records
+- Certificate Manager Certificate
+- CICD build and deploy pipeline
+- CloudWatch alarms and dashboards
+
+Platform built
+- Allow config inputs from developers
+- Setup and deploy the infra
+- Setup and deploy the CICD pipeline
+- Setup domain name mapping
+- comfirm successful depoloyment
+- setup monitoring and alerting

@@ -1,5 +1,5 @@
 # Advanced Topics — Class Notes
-**Cloud Engineering Programme | Month 4, Week 1 **
+**Cloud Engineering Programme**
 
 ---
 
@@ -179,4 +179,4 @@ Take 5 minutes individually, then share with the group:
 
 ---
 
-*Cloud Engineering Programme · Advanced Topics · Month 4, Week 1*
+*Cloud Engineering Programme · Advanced Topics*
