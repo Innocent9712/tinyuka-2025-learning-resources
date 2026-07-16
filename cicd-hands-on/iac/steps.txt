@@ -1,0 +1,15 @@
+setup the workflow environment
+setup the terraform dependencies
+validate that iac is correct
+
+trigger condition:
+push to iac-test branch
+
+jobs:
+validate
+
+
+
+extra:
+add plan step to job. But this requires you setup ACCESS_KEYS and SECRET_ACCESS_KEY as secrets on github.
+then reference and use to setup teraform on the workflow
